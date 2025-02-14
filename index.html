@@ -3,28 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proposal</title>
+    <title>😍PALAK😍</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background: url('https://source.unsplash.com/1600x900/?romantic,couple') no-repeat center center/cover;
             font-family: sans-serif;
-            overflow: hidden; /* Prevent scrollbars when button moves */
+            text-align: center;
+            margin: 0;
         }
 
         .container {
-            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            color: #333;
+            color: #d6336c;
+        }
+
+        .proposal-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+            text-align: left;
         }
 
         .buttons {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
 
         button {
@@ -33,19 +48,18 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Smooth transition */
+            transition: background-color 0.3s ease;
         }
 
         #yes-button {
-            background-color: #4CAF50; /* Green */
+            background-color: #ff4081;
             color: white;
-            margin-right: 10px;
         }
 
         #no-button {
-            background-color: #f44336; /* Red */
+            background-color: #f44336;
             color: white;
-            position: absolute; /* For movement */
+            position: absolute;
         }
 
         .heart-container {
@@ -53,8 +67,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0; /* Initially hidden */
-            pointer-events: none; /* Prevent interaction with hearts */
+            opacity: 0;
+            pointer-events: none;
         }
 
         .heart {
@@ -63,7 +77,7 @@
             height: 50px;
             background-color: red;
             transform: rotate(-45deg);
-            animation: float 5s linear infinite; /* Animate hearts */
+            animation: float 5s linear infinite;
         }
 
         .heart::before,
@@ -73,31 +87,31 @@
             width: 50px;
             height: 50px;
             background-color: red;
-            border-radius: 50%; /* Make circles */
+            border-radius: 50%;
         }
 
         .heart::before {
-            top: -25px; /* Position the top circle */
+            top: -25px;
             left: 0;
         }
 
         .heart::after {
-            left: 25px; /* Position the right circle */
+            left: 25px;
             top: 0;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0;} /* Start below screen */
-            25% { opacity: 1;}
-            75% { opacity: 1;}
-            100% { transform: translateY(-20vh) rotate(-45deg); opacity: 0;} /* End above screen */
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(-45deg); opacity: 0; }
         }
 
         .message {
             margin-top: 20px;
             font-size: 24px;
-            color: #4CAF50; /* Green */
-            display: none; /* Initially hidden */
+            color: #ff4081;
+            display: none;
         }
     </style>
 </head>
@@ -105,12 +119,18 @@
 
 <div class="container">
     <h1>Will you be my Valentine?</h1>
+    <p class="proposal-text">
+        <b>📜 Clause 1:</b> You will be my Valentine forever—no giving back. 🤭<br>
+        <b>📜 Clause 2:</b> I accept your weird habits if you accept my bad jokes. 🤭<br>
+        <b>📜 Clause 3:</b> Hugs 🫂 and sharing food are a must. ❤️<br>
+        <b>📜 Clause 4:</b> Say yes for a life full of love, fun, and stolen fries! 💖<br>
+    </p>
     <div class="buttons">
         <button id="yes-button">Yes</button>
         <button id="no-button">No</button>
     </div>
     <div class="heart-container"></div>
-    <div class="message" id="love-message">I Love You!</div> <!-- Message div -->
+    <div class="message" id="love-message">I Love You! ❤️</div>
 </div>
 
 <script>
@@ -122,29 +142,23 @@
     noButton.addEventListener('mouseover', () => {
         const maxX = window.innerWidth - noButton.offsetWidth;
         const maxY = window.innerHeight - noButton.offsetHeight;
-
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
-
         noButton.style.left = randomX + 'px';
         noButton.style.top = randomY + 'px';
     });
 
     yesButton.addEventListener('click', () => {
-        // Trigger heart animation
-        heartContainer.innerHTML = ''; // Clear previous hearts
-        heartContainer.style.opacity = 1; // Make container visible
-
-        for (let i = 0; i < 20; i++) { // Create multiple hearts
+        heartContainer.innerHTML = '';
+        heartContainer.style.opacity = 1;
+        for (let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
-            heart.style.animationDelay = Math.random() * 2 + 's'; // Random delay
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
             heartContainer.appendChild(heart);
         }
-
-        // Show the love message
-        loveMessage.style.display = 'block'; // Display the message
+        loveMessage.style.display = 'block';
     });
 </script>
 
