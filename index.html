@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+            overflow: hidden; /* Prevent scrollbars when button moves */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        #yes-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            margin-right: 10px;
+        }
+
+        #no-button {
+            background-color: #f44336; /* Red */
+            color: white;
+            position: absolute; /* For movement */
+        }
+
+        .heart-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Initially hidden */
+            pointer-events: none; /* Prevent interaction with hearts */
+        }
+
+        .heart {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 5s linear infinite; /* Animate hearts */
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%; /* Make circles */
+        }
+
+        .heart::before {
+            top: -25px; /* Position the top circle */
+            left: 0;
+        }
+
+        .heart::after {
+            left: 25px; /* Position the right circle */
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0;} /* Start below screen */
+            25% { opacity: 1;}
+            75% { opacity: 1;}
+            100% { transform: translateY(-20vh) rotate(-45deg); opacity: 0;} /* End above screen */
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #4CAF50; /* Green */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button id="yes-button">Yes</button>
+        <button id="no-button">No</button>
+    </div>
+    <div class="heart-container"></div>
+    <div class="message" id="love-message">I Love You!</div> <!-- Message div -->
+</div>
+
+<script>
+    const noButton = document.getElementById('no-button');
+    const yesButton = document.getElementById('yes-button');
+    const heartContainer = document.querySelector('.heart-container');
+    const loveMessage = document.getElementById('love-message');
+
+    noButton.addEventListener('mouseover', () => {
+        const maxX = window.innerWidth - noButton.offsetWidth;
+        const maxY = window.innerHeight - noButton.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noButton.style.left = randomX + 'px';
+        noButton.style.top = randomY + 'px';
+    });
+
+    yesButton.addEventListener('click', () => {
+        // Trigger heart animation
+        heartContainer.innerHTML = ''; // Clear previous hearts
+        heartContainer.style.opacity = 1; // Make container visible
+
+        for (let i = 0; i < 20; i++) { // Create multiple hearts
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.animationDelay = Math.random() * 2 + 's'; // Random delay
+            heartContainer.appendChild(heart);
+        }
+
+        // Show the love message
+        loveMessage.style.display = 'block'; // Display the message
+    });
+</script>
+
+</body>
+</html>
