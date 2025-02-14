@@ -3,43 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>😍PALAK😍</title>
+    <title>💝PALAK💝</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('https://source.unsplash.com/1600x900/?romantic,couple') no-repeat center center/cover;
+            background-color: #f0f0f0;
             font-family: sans-serif;
-            text-align: center;
-            margin: 0;
+            overflow: hidden;
+            position: relative;
+            background-image: radial-gradient(circle, rgba(255, 0, 0, 0.3) 10%, transparent 10%),
+                              radial-gradient(circle, rgba(255, 0, 0, 0.3) 10%, transparent 10%);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
         }
 
         .container {
-            max-width: 600px;
-            padding: 20px;
+            text-align: center;
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
         }
 
         h1 {
-            color: #d6336c;
-        }
-
-        .proposal-text {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #444;
-            text-align: left;
+            color: #333;
         }
 
         .buttons {
             margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
         }
 
         button {
@@ -52,70 +47,65 @@
         }
 
         #yes-button {
-            background-color: #ff4081;
+            background-color: #4CAF50;
             color: white;
+            margin-right: 10px;
         }
 
         #no-button {
             background-color: #f44336;
             color: white;
-            position: relative;
+            position: absolute;
         }
 
-        .heart-container {
+        .emoji-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
             height: 100vh;
             pointer-events: none;
             overflow: hidden;
         }
 
-        .floating-item {
+        .emoji {
             position: absolute;
-            font-size: 48px;
-            animation: float 3s linear infinite;
+            bottom: 0;
+            font-size: 2rem;
+            animation: rise 2s linear infinite;
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh); opacity: 0; }
-            25% { opacity: 1; }
-            75% { opacity: 1; }
-            100% { transform: translateY(-20vh); opacity: 0; }
-        }
-
-        .message {
-            margin-top: 20px;
-            font-size: 24px;
-            color: #ff4081;
-            display: none;
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Will you be my Valentine?</h1>
-    <p class="proposal-text">
-        <b>📜 Clause 1:</b> You will be my Valentine forever—no giving back. 🤭<br>
-        <b>📜 Clause 2:</b> I accept your weird habits if you accept my bad jokes. 🤭<br>
-        <b>📜 Clause 3:</b> Hugs 🫂 and sharing food are a must. ❤️<br>
-        <b>📜 Clause 4:</b> Say yes for a life full of love, fun, and stolen fries! 💖<br>
-    </p>
-    <div class="buttons">
-        <button id="yes-button">Yes</button>
-        <button id="no-button">No</button>
+    <h1>🤗Will You Be My Valentine?🤗</h1>
+    <div class="proposal-box">
+        <h2><b>⚠️Warning!⚠️</b></h2>
+        <p><b>Your heart is about to receive a new update!💕</b></p>
+        <p><b>💖Install "Saurabh’s Valentine Patch 2025"?</b></p>
+        <div class="buttons">
+            <button id="yes-button">Yes 💞</button>
+            <button id="no-button">No 🥺</button>
+        </div>
+        <div class="message" id="love-message" style="display:none; font-size:24px; color:#f44336;"><h2>🌹I Love You PALAK!🌹</h2></div>
     </div>
-    <div class="heart-container"></div>
-    <div class="message" id="love-message">I Love You! ❤️</div>
 </div>
+
+<div class="emoji-container" id="emoji-container"></div>
 
 <script>
     const noButton = document.getElementById('no-button');
     const yesButton = document.getElementById('yes-button');
-    const heartContainer = document.querySelector('.heart-container');
+    const emojiContainer = document.getElementById('emoji-container');
     const loveMessage = document.getElementById('love-message');
+    const emojis = ['❤️', '❤️‍🔥', '🌹', '🎀', '💋', '💌', '💍', '💐', '💓', '💕', '💖', '💗', '💘', '💝', '💞', '💟', '🖤', '🤍', '🤎', '🤟', '🥰', '🧑‍🤝‍🧑', '🧸', '🫀', '😍', '😘', '😚', '😻'];
 
     noButton.addEventListener('mouseover', () => {
         const maxX = window.innerWidth - noButton.offsetWidth;
@@ -129,18 +119,16 @@
     });
 
     yesButton.addEventListener('click', () => {
-        heartContainer.innerHTML = '';
-        const emojis = ['❤️', '💋', '😍', '😘', '💕', '💖', '💗'];
-        for (let i = 0; i < 100; i++) {
-            const floatingItem = document.createElement('div');
-            floatingItem.classList.add('floating-item');
-            floatingItem.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            floatingItem.style.left = Math.random() * 100 + 'vw';
-            floatingItem.style.top = Math.random() * 100 + 'vh';
-            floatingItem.style.animationDelay = Math.random() * 1.5 + 's';
-            heartContainer.appendChild(floatingItem);
-        }
         loveMessage.style.display = 'block';
+        setInterval(() => {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+            emojiContainer.appendChild(emoji);
+            setTimeout(() => { emoji.remove(); }, 2000);
+        }, 150);
     });
 </script>
 
