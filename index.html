@@ -72,40 +72,17 @@
             overflow: hidden;
         }
 
-        .heart {
+        .floating-item {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            transform: rotate(-45deg);
-            animation: float 5s linear infinite;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            border-radius: 50%;
-        }
-
-        .heart::before {
-            top: -15px;
-            left: 0;
-        }
-
-        .heart::after {
-            left: 15px;
-            top: 0;
+            font-size: 48px;
+            animation: float 3s linear infinite;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+            0% { transform: translateY(100vh); opacity: 0; }
             25% { opacity: 1; }
             75% { opacity: 1; }
-            100% { transform: translateY(-20vh) rotate(-45deg); opacity: 0; }
+            100% { transform: translateY(-20vh); opacity: 0; }
         }
 
         .message {
@@ -119,7 +96,7 @@
 <body>
 
 <div class="container">
-    <h1>Will You Be My Valentine?</h1>
+    <h1>Will you be my Valentine?</h1>
     <p class="proposal-text">
         <b>📜 Clause 1:</b> You will be my Valentine forever—no giving back. 🤭<br>
         <b>📜 Clause 2:</b> I accept your weird habits if you accept my bad jokes. 🤭<br>
@@ -151,13 +128,15 @@
 
     yesButton.addEventListener('click', () => {
         heartContainer.innerHTML = '';
-        for (let i = 0; i < 50; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heartContainer.appendChild(heart);
+        const emojis = ['❤️', '💋', '😍', '😘', '💕', '💖', '💗'];
+        for (let i = 0; i < 100; i++) {
+            const floatingItem = document.createElement('div');
+            floatingItem.classList.add('floating-item');
+            floatingItem.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            floatingItem.style.left = Math.random() * 100 + 'vw';
+            floatingItem.style.top = Math.random() * 100 + 'vh';
+            floatingItem.style.animationDelay = Math.random() * 1.5 + 's';
+            heartContainer.appendChild(floatingItem);
         }
         loveMessage.style.display = 'block';
     });
